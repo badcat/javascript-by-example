@@ -1,87 +1,140 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<style>
-	.symbol {
-		width:30px;
-		height:30px;
-		text-align-last: center
-	}
 
+<head>
+	<title>Calculator</title>
+	<meta name="viewport" content="width=device-width">
+	<style>
+		body {
+			height: 100vh;
+			display: grid;
+			place-items: center;
+			margin: 0;
+			font-family: system-ui;
+			font-size: 100%;
+		}
+
+		table {
+			font-size: 1rem;
+			background-color: #373737;
+			border: 0;
+			border-radius: 6px;
+			padding: 1px;
+			box-shadow: 0 0 30px #00000050;
+		}
+
+		th {
+			background-color: transparent;
+			color: #9b9b9b;
+			border: 0;
+			text-transform: uppercase;
+		}
+
+		td {
+			background-color: #9b9b9b;
+			color: #fff;
+			text-align: center;
+			border: none;
+		}
+
+		td.functionA {
+			background-color: #fd9426;
+		}
+
+		td.functionB {
+			background-color: #737373;
+		}
+
+		.resultbox {
+			background-color: transparent;
+			font-weight: 100;
+			font-size: 3em;
+			text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+		}
+
+		#result {
+			color: #fff;
+			background-color: transparent;
+			border: none;
+			padding: 5px;
+			text-align: right;
+			max-width: 240px;
+		}
+
+		#num0 {
+			text-align: left;
+			padding-left: 10%;
+		}
+
+		.symbol {
+			width: 50px;
+			height: 45px;
+			text-align-last: center;
+		}
 	</style>
 </head>
 
 <body>
-<h1>My Calculator</h1>
 
+	<table border=1>
+		<th align=c enter colspan=4>Calculator</th>
+		<tr>
+			<td class="resultbox" align=r ight colspan=4>
+				<input type='textbox' id='result' value=0>
+			</td>
+		</tr>
+		<tr>
+			<td class="symbol functionB" id='clear'>AC</td>
+			<td class="symbol functionB" id='leftp'>(</td>
+			<td class="symbol functionB" id='rightp'>)</td>
+			<td class="symbol functionA" id='div'>&#247</td>
+		</tr>
+		<tr>
+			<td class="symbol" id='num7'>7</td>
+			<td class="symbol" id='num8'>8</td>
+			<td class="symbol" id='num9'>9</td>
+			<td class="symbol functionA" id='mult'>&#215</td>
+		</tr>
+		<tr>
+			<td class="symbol" id='num4'>4</td>
+			<td class="symbol" id='num5'>5</td>
+			<td class="symbol" id='num6'>6</td>
+			<td class="symbol functionA" id='sub'>-</td>
+		</tr>
+		<tr>
+			<td class="symbol" id='num1'>1</td>
+			<td class="symbol" id='num2'>2</td>
+			<td class="symbol" id='num3'>3</td>
+			<td class="symbol  functionA" id='plus'>+</td>
+		</tr>
+		<tr>
+			<td class="symbol" colspan=2 id='num0'>0</td>
+			<td class="symbol" id='decimal'>.</td>
+			<td class="functionA" id='equal'>=</td>
+		</tr>
 
-<table border = 1>
+	</table>
 
-<tr>
-	<td align = right colspan = 4>
-		<input type ='textbox' id = 'result' width = '200px' value = 0> 
-	</td>
-</tr>
-<tr>
-	<td class = "symbol" id = 'clear'>AC</td>
-	<td class = "symbol" id = 'leftp'>(</td>
-	<td class = "symbol" id = 'rightp'>)</td>
-	<td class = "symbol" id = 'div'>/</td>
-</tr>
-<tr>
-	<td class = "symbol" id = 'num7'>7</td>
-	<td class = "symbol"  id = 'num8'>8</td>
-	<td class = "symbol" id = 'num9'>9</td>
-	<td class = "symbol" id = 'mult'>*</td>
-</tr>
-<tr>
-	<td  class = "symbol"  id = 'num4'>4</td>
-	<td  class = "symbol"  id ='num5' >5</td>
-	<td  class = "symbol"  id ='num6'>6</td>
-	<td  class = "symbol"  id ='sub'>-</td>
-</tr>
-<tr>
-	<td  class = "symbol"  id = 'num1'>1</td>
-	<td  class = "symbol"  id = 'num2'>2</td>
-	<td  class = "symbol" id = 'num3'>3</td>
-	<td  class = "symbol" id = 'plus'>+</td>
-</tr>
-<tr>
-	<td class = "symbol"  colspan = 2 id ='num0'>0</td>
-	<td class = "symbol"  id = 'decimal'>.</td>
-	<td id = 'equal'>=</td>
-</tr>
-
-</table>
-
-
-
-<script>
- 
-//if the clicked object is a digit 
-function printSymbol(e)
-{
-	let result = document.getElementById("result");
-	let obj = e.target;
- 	
- 	if (result.value == 0)
- 		result.value = obj.textContent;
- 	else
-		result.value = result.value + obj.textContent;
-}
- 
-let result = document.getElementById("result");
-let clear = document.getElementById("clear");
-let equal = document.getElementById("equal");
-
-let symbols = document.getElementsByClassName("symbol")
-
-for (let i = 0; i < symbols.length; i++)
-	symbols[i].addEventListener("click", printSymbol);
-
-clear.addEventListener("click", () => document.getElementById("result").value = 0 );
-equal.addEventListener("click", e => result.value = eval(result.value) )
-
-</script>
+	<script>
+		//if the clicked object is a digit 
+		function printSymbol(e) {
+			let result = document.getElementById("result");
+			let obj = e.target;
+			if (result.value == 0)
+				result.value = obj.textContent;
+			else
+				result.value = result.value + obj.textContent;
+		}
+		let result = document.getElementById("result");
+		let clear = document.getElementById("clear");
+		let equal = document.getElementById("equal");
+		let symbols = document.getElementsByClassName("symbol")
+		for (let i = 0; i < symbols.length; i++)
+			symbols[i].addEventListener("click", printSymbol);
+		clear.addEventListener("click", () => document.getElementById("result").value = 0);
+		equal.addEventListener("click", e => result.value = eval(result.value))
+	</script>
 </body>
 
+<!-- https://github.com/hnasr/javascript-by-example/blob/L2-Episode02/calc.html  ->
 </html>
